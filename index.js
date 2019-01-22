@@ -1,161 +1,58 @@
-'use strict';
+// Put your JavaScript in this file.
+'use strict';   // Enable "strict mode".  Note: This *must* be the first statement in the script.
+                // See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 
-// Enter your js code Here
+// new global variables
+var turn;
+var gameStatus;
 
+// create a global variable representing the board
+var board = document.getElementById("board");  // only 1 board, use ID
 
-//<div id= "board">
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-//  <div class="square"></div>
-
-
-
-
-//var piece1 = {type: "King", location: 27, symbol: "K"};
-//var piece1 = {type: "Queen", location: 27, symbol: "Q"};
-//var piece1 = {type: "Bishop", location: 27, symbol: "B"};
-//var piece1 = {type: "Bishop", location: 27, symbol: "B"};
-//var piece1 = {type: "Rook", location: 27, symbol: "R"};
-//var piece1 = {type: "Rook", location: 27, symbol: "R"};
-//var piece1 = {type: "Knight", location: 27, symbol: "P"};
-//var piece1 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece1 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece1 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece1 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece1 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece1 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece1 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece1 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece1 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece1 = {type: "Pawn", location: 27, symbol: "P"};
-
-
-//var piece2 = {type: "King", location: 27, symbol: "K"};
-//var piece2 = {type: "Queen", location: 27, symbol: "Q"};
-//var piece2 = {type: "Bishop", location: 27, symbol: "B"};
-//var piece2 = {type: "Bishop", location: 27, symbol: "B"};
-//var piece2 = {type: "Rook", location: 27, symbol: "R"};
-//var piece2 = {type: "Rook", location: 27, symbol: "R"};
-//var piece2 = {type: "Knight", location: 27, symbol: "P"};
-//var piece2 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece2 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece2 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece2 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece2 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece2 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece2 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece2 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece2 = {type: "Pawn", location: 27, symbol: "P"};
-//var piece2 = {type: "Pawn", location: 27, symbol: "P"};
-
-var board = document.getElementById("board");
-
+// create the array of pieces for each player
 var player1Pieces = new Array;
 var player2Pieces = new Array;
 
-     player1Pieces.push({type: "Rook", square:0, symbol: "R"});
+player1Pieces.push({type: "Pawn", square:0, symbol: "P"});
+player1Pieces.push({type: "Pawn", square:1, symbol: "P"});
+player1Pieces.push({type: "Pawn", square:2, symbol: "P"});
+player1Pieces.push({type: "Pawn", square:3, symbol: "P"});
+player1Pieces.push({type: "Pawn", square:4, symbol: "P"});
 
-     player1Pieces.push({type: "Knight", square:1, symbol: "Kn"});
+player2Pieces.push({type: "Pawn", square:20, symbol: "P"});
+player2Pieces.push({type: "Pawn", square:21, symbol: "P"});
+player2Pieces.push({type: "Pawn", square:22, symbol: "P"});
+player2Pieces.push({type: "Pawn", square:23, symbol: "P"});
+player2Pieces.push({type: "Pawn", square:24, symbol: "P"});
 
-     player1Pieces.push({type: "Bishop", square:2, symbol: "B"});
+// get the array of squares from the HTML page
+var squares = document.querySelectorAll('.square');
 
-     player1Pieces.push({type: "Queen", square:3, symbol: "Q"});
+var i;  // for loop counter
 
-     player1Pieces.push({type: "King", square:4, symbol: "K"});
-
-     player1Pieces.push({type: "Bishop", square:5, symbol: "B"});
-
-     player1Pieces.push({type: "Knight", square:6, symbol: "Kn"});
-
-     player1Pieces.push({type: "Rook", square:7, symbol: "R"});
-
-     player1Pieces.push({type: "Pawn", square:8, symbol: "P"});
-
-     player1Pieces.push({type: "Pawn", square:9, symbol: "P"});
-
-     player1Pieces.push({type: "Pawn", square:10, symbol: "P"});
-
-     player1Pieces.push({type: "Pawn", square:11, symbol: "P"});
-
-     player1Pieces.push({type: "Pawn", square:12, symbol: "P"});
-
-     player1Pieces.push({type: "Pawn", square:13, symbol: "P"});
-
-     player1Pieces.push({type: "Pawn", square:14, symbol: "P"});
-
-     player1Pieces.push({type: "Pawn", square:15, symbol: "P"});
-
-
-
-     player2Pieces.push({type: "Pawn", square:48, symbol: "P"});
-
-     player2Pieces.push({type: "Pawn", square:49, symbol: "P"});
-
-     player2Pieces.push({type: "Pawn", square:50, symbol: "P"});
-
-     player2Pieces.push({type: "Pawn", square:51, symbol: "P"});
-
-     player2Pieces.push({type: "Pawn", square:52, symbol: "P"});
-
-     player2Pieces.push({type: "Pawn", square:53, symbol: "P"});
-
-     player2Pieces.push({type: "Pawn", square:54, symbol: "P"});
-
-     player2Pieces.push({type: "Pawn", square:55, symbol: "P"});
-
-     player2Pieces.push({type: "Rook", square:56, symbol: "R"});
-
-     player2Pieces.push({type: "Knight", square:57, symbol: "Kn"});
-
-     player2Pieces.push({type: "Bishop", square:58, symbol: "B"});
-
-     player2Pieces.push({type: "Queen", square:59, symbol: "Q"});
-
-     player2Pieces.push({type: "King", square:60, symbol: "K"});
-
-     player2Pieces.push({type: "Bishop", square:61, symbol: "B"});
-
-     player2Pieces.push({type: "Knight", square:62, symbol: "Kn"});
-
-     player2Pieces.push({type: "Rook", square:63, symbol: "R"});
-
-
-     var squares = document.querySelectorAll('.square');
-
-     var i;
-
-     for (i=0; i<player1Pieces.length;i++)
-
-     {
-
-         squares[player1Pieces[i].square].innerHTML = player1Pieces[i].symbol;
-
-     }
-
-     for (i=0; i<player2Pieces.length;i++)
-
+// populate the board with player 1's pieces
+for (i=0; i<player1Pieces.length;i++)
 {
-
-    squares[player2Pieces[i].square].innerHTML = player2Pieces[i].symbol;
-
+    squares[player1Pieces[i].square].innerHTML = player1Pieces[i].symbol;
 }
 
-board.addEventListener('click', function(e)
-
+// populate the board with player 2's pieces
+for (i=0; i<player2Pieces.length;i++)
 {
+    squares[player2Pieces[i].square].innerHTML = player2Pieces[i].symbol;
+}
 
-  alert(e.target.innerHTML);
+// ------  End start up code -----  Begin functions ------------------
 
+// ----------------------------------------------------------------------
+// --- Click event on a board, but the actual event is on a square
 
+board.addEventListener('click', function(e)
+{
+  // e is the event, e.target is the square that was clicked on
+  // Show the user what is in the square they clicked on
+  alert("Contents of the square is " + e.target.innerHTML);
+
+  alert("The square you clicked on is " + e.target.id);
 
 });
